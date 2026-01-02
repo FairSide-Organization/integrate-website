@@ -324,13 +324,65 @@ code {
 
 .hero-glow {
   position: absolute;
-  top: 10%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 800px;
-  height: 600px;
-  background: radial-gradient(ellipse at center, rgba(143, 77, 255, 0.15) 0%, transparent 60%);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   pointer-events: none;
+  overflow: hidden;
+}
+
+.hero-glow::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: 10%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(143, 77, 255, 0.25) 0%, rgba(143, 77, 255, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: floatGlowPrimary 15s ease-in-out infinite;
+}
+
+.hero-glow::after {
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(69, 105, 245, 0.25) 0%, rgba(69, 105, 245, 0.1) 40%, transparent 70%);
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: floatGlowSecondary 18s ease-in-out infinite;
+}
+
+@keyframes floatGlowPrimary {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, 20px) scale(1.05);
+  }
+  50% {
+    transform: translate(-20px, 40px) scale(0.95);
+  }
+  75% {
+    transform: translate(20px, -10px) scale(1.02);
+  }
+}
+
+@keyframes floatGlowSecondary {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-40px, 30px) scale(1.08);
+  }
+  66% {
+    transform: translate(30px, -20px) scale(0.92);
+  }
 }
 
 .hero-container {
@@ -801,14 +853,6 @@ code {
   color: var(--neutral-gray-700);
   margin-bottom: var(--space-md);
   font-size: 0.9375rem;
-}
-
-.flow-connector {
-  width: 2px;
-  height: 24px;
-  background: linear-gradient(to bottom, var(--primary-600), var(--primary-200));
-  margin-left: 19px;
-  margin-bottom: var(--space-md);
 }
 
 /* ===================================
@@ -1599,10 +1643,6 @@ code {
     width: 32px;
     height: 32px;
     font-size: 0.8125rem;
-  }
-  
-  .flow-connector {
-    margin-left: 15px;
   }
   
   .footer-content {
