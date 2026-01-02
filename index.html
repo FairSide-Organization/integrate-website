@@ -28,6 +28,7 @@
         <a href="#membership" class="nav-link">Membership</a>
         <a href="#contracts" class="nav-link">Contracts</a>
         <a href="#crypto-payments" class="nav-link">Crypto Payments</a>
+        <a href="#referrals" class="nav-link">Referrals</a>
         <a href="#examples" class="nav-link">Examples</a>
       </div>
       <div class="nav-actions">
@@ -77,7 +78,7 @@
       </div>
 
       <!-- Integration Options -->
-      <div class="cards-grid">
+      <div class="cards-grid cards-grid-3">
         <div class="card card-api">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -85,13 +86,13 @@
             </svg>
           </div>
           <h3>Web SDK</h3>
-          <p>Pre-built components and utilities for rapid integration. Handles authentication and contract interactions</p>
+          <p>Pre-built components and utilities for rapid integration. Handles authentication and contract interactions.</p>
           <ul class="card-list">
             <li>Simplified API wrappers</li>
             <li>TypeScript support</li>
-            <li>Purchase on the Abstract chain</li>
+            <li>Purchase on Abstract chain</li>
           </ul>
-          <a href="https://www.npmjs.com/package/@fairside-foundation/sdk" target="_blank" class="btn btn-primary" style="margin-top: var(--space-lg); width: 100%;">
+          <a href="https://www.npmjs.com/package/@fairside-foundation/sdk" target="_blank" class="btn btn-primary" style="margin-top: auto; width: 100%;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
               <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.003V8.667h7.334v5.331z"/>
             </svg>
@@ -105,16 +106,39 @@
             </svg>
           </div>
           <h3>Direct API Integration</h3>
-          <p>Full control with REST API and smart contract calls. Ideal for custom implementations and advanced use cases.</p>
+          <p>Full control with REST API and smart contract calls. For custom implementations.</p>
           <ul class="card-list">
-            <li class="highlight">Purchase on multiple chains and tokens</li>
+            <li class="highlight">Purchase on multiple chains</li>
             <li>REST API for user management</li>
             <li>Direct smart contract calls</li>
-            <li>Webhook integrations</li>
             <li>Any language/framework</li>
           </ul>
-          <a href="#authentication" class="btn btn-secondary" style="margin-top: var(--space-lg); width: 100%;">
+          <a href="#authentication" class="btn btn-secondary" style="margin-top: auto; width: 100%;">
             <span>Explore below</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12l7 7 7-7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="card card-referral">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h3>Referral Links</h3>
+          <p>No code required. Share your referral link and earn ETH commissions on every purchase.</p>
+          <ul class="card-list">
+            <li class="highlight">Earn % on purchases</li>
+            <li>Unique referral code</li>
+            <li>Track signups & earnings</li>
+            <li>Claim rewards in ETH</li>
+          </ul>
+          <a href="#referrals" class="btn btn-secondary" style="margin-top: auto; width: 100%;">
+            <span>Learn more</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M12 5v14M5 12l7 7 7-7"/>
             </svg>
@@ -886,6 +910,92 @@ const signature = await signer.signMessage(message);</code></pre>
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Referrals Section -->
+  <section id="referrals" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Referrals</span>
+        <h2 class="section-title">Earn with Referral Links</h2>
+        <p class="section-desc">
+          No integration required. Share your unique referral link and earn ETH commissions when users purchase memberships.
+        </p>
+      </div>
+
+      <!-- How It Works -->
+      <div class="referral-main-card">
+        <div class="referral-card-header">
+          <h3>How It Works</h3>
+          <a href="https://app.fairside.io/referrals" target="_blank" class="btn btn-primary">
+            Open Referral Dashboard
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+              <polyline points="15,3 21,3 21,9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+            </svg>
+          </a>
+        </div>
+        
+        <div class="referral-steps">
+          <div class="referral-step-item">
+            <span class="step-number">1</span>
+            <div class="step-content">
+              <strong>Get Your Referral Code</strong>
+              <p>Every Fairside user receives a unique referral code upon registration. Find it in your <a href="https://app.fairside.io/referrals" target="_blank">referral dashboard</a>.</p>
+            </div>
+          </div>
+          
+          <div class="referral-step-item">
+            <span class="step-number">2</span>
+            <div class="step-content">
+              <strong>Share Your Link</strong>
+              <p>Share your referral link on social media, Discord, Telegram, or anywhere your audience is.</p>
+              <code class="referral-link-example">https://fairside.io?referralCode=YOUR_CODE</code>
+            </div>
+          </div>
+          
+          <div class="referral-step-item">
+            <span class="step-number">3</span>
+            <div class="step-content">
+              <strong>Earn Commissions</strong>
+              <p>When users sign up and purchase memberships using your link, you earn a percentage of their purchase.</p>
+            </div>
+          </div>
+          
+          <div class="referral-step-item">
+            <span class="step-number">4</span>
+            <div class="step-content">
+              <strong>Claim Your ETH</strong>
+              <p>Track your earnings and claim your accumulated ETH rewards anytime from your dashboard.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="referral-tracking">
+          <h4>What You Can Track</h4>
+          <div class="tracking-grid">
+            <div class="tracking-column">
+              <span class="tracking-label">📊 Stats</span>
+              <ul>
+                <li>Total signups from your link</li>
+                <li>Users who purchased membership</li>
+                <li>Total cover amount generated</li>
+              </ul>
+            </div>
+            <div class="tracking-column">
+              <span class="tracking-label">💰 Earnings</span>
+              <ul>
+                <li>Total earnings in ETH</li>
+                <li>Already claimed amount</li>
+                <li>Claimable balance</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
