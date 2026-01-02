@@ -70,13 +70,13 @@
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-value">Abstract</span>
-          <span class="stat-label">Chain Network</span>
+          <span class="stat-value">SDK + API</span>
+          <span class="stat-label">Integration Options</span>
         </div>
         <div class="stat-divider"></div>
         <div class="stat">
-          <span class="stat-value">REST + Web3</span>
-          <span class="stat-label">Integration Type</span>
+          <span class="stat-value">Multi-Token</span>
+          <span class="stat-label">Payment Support</span>
         </div>
       </div>
     </div>
@@ -87,48 +87,96 @@
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Overview</span>
-        <h2 class="section-title">Two-Part Integration</h2>
+        <h2 class="section-title">Choose Your Integration Method</h2>
         <p class="section-desc">
-          Fairside combines REST APIs for user management with on-chain smart contracts for membership purchases.
+          Integrate Fairside Protocol using our Web SDK for quick setup, or use the Direct API for full control.
         </p>
       </div>
 
+      <!-- Integration Options -->
       <div class="cards-grid">
         <div class="card card-api">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+          </div>
+          <h3>Web SDK</h3>
+          <p>Pre-built components and utilities for rapid integration. Handles authentication, contract interactions, and UI.</p>
+          <ul class="card-list">
+            <li>Ready-to-use React components</li>
+            <li>Simplified API wrappers</li>
+            <li>Built-in state management</li>
+            <li>TypeScript support</li>
+          </ul>
+          <a href="https://www.npmjs.com/package/@fairside-foundation/sdk" target="_blank" class="btn btn-primary" style="margin-top: var(--space-lg); width: 100%;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 8px;">
+              <path d="M0 7.334v8h6.666v1.332H12v-1.332h12v-8H0zm6.666 6.664H5.334v-4H3.999v4H1.335V8.667h5.331v5.331zm4 0v1.336H8.001V8.667h5.334v5.332h-2.669v-.001zm12.001 0h-1.33v-4h-1.336v4h-1.335v-4h-1.33v4h-2.003V8.667h7.334v5.331z"/>
+            </svg>
+            View on npm
+          </a>
+        </div>
+        <div class="card card-contract">
           <div class="card-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
               <path d="M4 6h16M4 12h16M4 18h10"/>
             </svg>
           </div>
-          <h3>REST API</h3>
-          <p>Authentication, user management, membership data, and wallet tracking through our secure endpoints.</p>
+          <h3>Direct API Integration</h3>
+          <p>Full control with REST API and smart contract calls. Ideal for custom implementations and advanced use cases.</p>
           <ul class="card-list">
-            <li>Wallet-based authentication</li>
-            <li>User profile management</li>
-            <li>Membership status checks</li>
-            <li>Covered wallet management</li>
+            <li>REST API for user management</li>
+            <li>Direct smart contract calls</li>
+            <li>Webhook integrations</li>
+            <li>Any language/framework</li>
           </ul>
+          <a href="#authentication" class="btn btn-secondary" style="margin-top: var(--space-lg); width: 100%;">
+            View API Documentation
+          </a>
         </div>
-        <div class="card card-contract">
-          <div class="card-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2"/>
-              <path d="M9 9h6M9 12h6M9 15h4"/>
-            </svg>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="config-section" style="margin-top: var(--space-3xl);">
+        <h3 class="config-title" style="font-size: 1.25rem; margin-bottom: var(--space-xl);">Two Payment Methods</h3>
+        
+        <div class="cards-grid" style="margin-bottom: 0;">
+          <div class="card" style="background: var(--neutral-gray-100); border: none;">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+              <span style="background: var(--secondary-100); color: var(--secondary-600); padding: 4px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;">OPTION 1</span>
+              <h4 style="margin: 0; color: var(--neutral-gray-900);">Native Payment (Abstract Chain)</h4>
+            </div>
+            <p style="color: var(--neutral-gray-700); font-size: 0.9375rem; margin-bottom: var(--space-md);">
+              <strong>Your integration sends the transaction.</strong> Users pay directly on the Abstract network using ETH. You call the smart contract's <code>purchaseMembership</code> function and submit the transaction on behalf of the user.
+            </p>
+            <ul class="card-list">
+              <li>User signs transaction via their wallet</li>
+              <li>Transaction sent to Abstract chain (Chain ID: 2741)</li>
+              <li>Your integration handles contract interaction</li>
+              <li>Immediate on-chain confirmation</li>
+            </ul>
           </div>
-          <h3>Smart Contracts</h3>
-          <p>On-chain membership management on Abstract chain for purchasing, renewing, and topping up coverage.</p>
-          <ul class="card-list">
-            <li>Purchase membership</li>
-            <li>Top-up coverage amount</li>
-            <li>Renew membership</li>
-            <li>Query membership status</li>
-          </ul>
+          
+          <div class="card" style="background: var(--neutral-gray-100); border: none;">
+            <div style="display: flex; align-items: center; gap: var(--space-sm); margin-bottom: var(--space-md);">
+              <span style="background: var(--primary-100); color: var(--primary-600); padding: 4px 10px; border-radius: 100px; font-size: 0.75rem; font-weight: 600;">OPTION 2</span>
+              <h4 style="margin: 0; color: var(--neutral-gray-900);">Crypto Payment (NowPayments)</h4>
+            </div>
+            <p style="color: var(--neutral-gray-700); font-size: 0.9375rem; margin-bottom: var(--space-md);">
+              <strong>Fairside manages the transaction.</strong> Users pay with supported cryptocurrencies (BTC, USDT, USDC, etc.). They simply send tokens to a generated wallet address. Fairside handles the on-chain membership purchase automatically.
+            </p>
+            <ul class="card-list">
+              <li>User sends tokens to provided address</li>
+              <li>Supports BTC, ETH, USDT, USDC, and more</li>
+              <li>Fairside executes on-chain purchase</li>
+              <li>No Abstract chain interaction required</li>
+            </ul>
+          </div>
         </div>
       </div>
 
       <!-- Configuration Tables -->
-      <div class="config-section">
+      <div class="config-section" style="margin-top: var(--space-2xl);">
         <h3 class="config-title">API Endpoints</h3>
         <div class="table-wrapper">
           <table class="config-table">
@@ -152,6 +200,9 @@
         </div>
 
         <h3 class="config-title">Contract Addresses (Abstract Chain)</h3>
+        <p style="color: var(--neutral-gray-600); font-size: 0.875rem; margin-bottom: var(--space-md);">
+          Required only for Native Payment method. These are the FairSideNetwork contract addresses on Abstract chain.
+        </p>
         <div class="table-wrapper">
           <table class="config-table">
             <thead>
@@ -159,6 +210,7 @@
                 <th>Environment</th>
                 <th>Chain ID</th>
                 <th>FairSideNetwork Contract</th>
+                <th>RPC URL</th>
               </tr>
             </thead>
             <tbody>
@@ -166,11 +218,13 @@
                 <td><span class="env-badge env-test">TestNet</span></td>
                 <td>11124</td>
                 <td><code class="address">0xCC484a76566e5cc6d4678D08c3214149f275A673</code></td>
+                <td><code>https://api.testnet.abs.xyz</code></td>
               </tr>
               <tr>
                 <td><span class="env-badge env-main">MainNet</span></td>
                 <td>2741</td>
                 <td><code class="address">0x17aD4490A9181cf01F2Be059765d4f2d8Ee6d8a0</code></td>
+                <td><code>https://api.mainnet.abs.xyz</code></td>
               </tr>
             </tbody>
           </table>
@@ -369,9 +423,10 @@ const signature = await signer.signMessage(message);</code></pre>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Smart Contracts</span>
-        <h2 class="section-title">On-Chain Operations</h2>
+        <h2 class="section-title">Native Payment (Abstract Chain)</h2>
         <p class="section-desc">
           Purchase and manage memberships directly through the FairSideNetwork contract on Abstract chain.
+          <strong>Your integration must send the transaction</strong> — users sign with their wallet, and you submit to the Abstract network.
         </p>
       </div>
 
@@ -489,9 +544,10 @@ const signature = await signer.signMessage(message);</code></pre>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Crypto Payments</span>
-        <h2 class="section-title">Pay with 200+ Cryptocurrencies</h2>
+        <h2 class="section-title">Pay with Multiple Cryptocurrencies</h2>
         <p class="section-desc">
-          Allow users to purchase memberships using Bitcoin, USDT, USDC, and 200+ other cryptocurrencies via NowPayments integration.
+          Allow users to purchase memberships using Bitcoin, USDT, USDC, and other supported cryptocurrencies.
+          <strong>Fairside handles the on-chain transaction</strong> — users simply send tokens to a generated wallet address on their preferred network.
         </p>
       </div>
 
@@ -505,7 +561,7 @@ const signature = await signer.signMessage(message);</code></pre>
             </svg>
           </div>
           <h3>Real-time Estimates</h3>
-          <p>Get live exchange rates for 200+ cryptocurrencies. Shows exact amount needed in user's chosen currency.</p>
+          <p>Get live exchange rates for supported cryptocurrencies. Shows exact amount needed in user's chosen currency.</p>
         </div>
         <div class="card">
           <div class="card-icon">
