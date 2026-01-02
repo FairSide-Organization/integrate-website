@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fairside Protocol - Developer Integration Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <meta name="description" content="Integrate Fairside Protocol into your dApp. REST API and smart contract documentation for decentralized wallet coverage.">
+  <meta name="theme-color" content="#FFFFFF">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="logo.svg" alt="Fairside" class="logo-img">
+      </a>
+      <div class="nav-links">
+        <a href="#overview" class="nav-link">Overview</a>
+        <a href="#authentication" class="nav-link">Auth</a>
+        <a href="#membership" class="nav-link">Membership</a>
+        <a href="#contracts" class="nav-link">Contracts</a>
+        <a href="#crypto-payments" class="nav-link">Crypto Payments</a>
+        <a href="#examples" class="nav-link">Examples</a>
+      </div>
+      <div class="nav-actions">
+        <a href="https://fairside.gitbook.io/fairsidenetwork" class="btn btn-ghost" target="_blank">Full Docs</a>
+        <a href="#get-started" class="btn btn-primary">Get API Key</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-container">
+      <div class="hero-badge">
+        <span class="badge-dot"></span>
+        <span>v1.0 API</span>
+      </div>
+      <h1 class="hero-title">
+        Build with <span class="gradient-text">Fairside</span>
+      </h1>
+      <p class="hero-subtitle">
+        Decentralized membership-based coverage protocol. Integrate our REST API and smart contracts to offer wallet protection in your dApp.
+      </p>
+      <div class="hero-actions">
+        <a href="#get-started" class="btn btn-primary btn-lg">
+          <span>Start Integrating</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="#overview" class="btn btn-secondary btn-lg">
+          <span>View Documentation</span>
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-value">0.25 - 10</span>
+          <span class="stat-label">ETH Coverage Range</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">Abstract</span>
+          <span class="stat-label">Chain Network</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-value">REST + Web3</span>
+          <span class="stat-label">Integration Type</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Overview Section -->
+  <section id="overview" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Overview</span>
+        <h2 class="section-title">Two-Part Integration</h2>
+        <p class="section-desc">
+          Fairside combines REST APIs for user management with on-chain smart contracts for membership purchases.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <div class="card card-api">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 6h16M4 12h16M4 18h10"/>
+            </svg>
+          </div>
+          <h3>REST API</h3>
+          <p>Authentication, user management, membership data, and wallet tracking through our secure endpoints.</p>
+          <ul class="card-list">
+            <li>Wallet-based authentication</li>
+            <li>User profile management</li>
+            <li>Membership status checks</li>
+            <li>Covered wallet management</li>
+          </ul>
+        </div>
+        <div class="card card-contract">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2"/>
+              <path d="M9 9h6M9 12h6M9 15h4"/>
+            </svg>
+          </div>
+          <h3>Smart Contracts</h3>
+          <p>On-chain membership management on Abstract chain for purchasing, renewing, and topping up coverage.</p>
+          <ul class="card-list">
+            <li>Purchase membership</li>
+            <li>Top-up coverage amount</li>
+            <li>Renew membership</li>
+            <li>Query membership status</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Configuration Tables -->
+      <div class="config-section">
+        <h3 class="config-title">API Endpoints</h3>
+        <div class="table-wrapper">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Environment</th>
+                <th>Base URL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="env-badge env-test">TestNet</span></td>
+                <td><code>https://api.test.fairside.dev/v1</code></td>
+              </tr>
+              <tr>
+                <td><span class="env-badge env-main">MainNet</span></td>
+                <td><code>https://api.fairside.io/v1</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="config-title">Contract Addresses (Abstract Chain)</h3>
+        <div class="table-wrapper">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Environment</th>
+                <th>Chain ID</th>
+                <th>FairSideNetwork Contract</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="env-badge env-test">TestNet</span></td>
+                <td>11124</td>
+                <td><code class="address">0xCC484a76566e5cc6d4678D08c3214149f275A673</code></td>
+              </tr>
+              <tr>
+                <td><span class="env-badge env-main">MainNet</span></td>
+                <td>2741</td>
+                <td><code class="address">0x17aD4490A9181cf01F2Be059765d4f2d8Ee6d8a0</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Authentication Section -->
+  <section id="authentication" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Authentication</span>
+        <h2 class="section-title">Wallet-Based Auth Flow</h2>
+        <p class="section-desc">
+          Authenticate users by signing a message with their wallet. All API requests require an API key.
+        </p>
+      </div>
+
+      <div class="auth-flow">
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Request Auth Message</h4>
+            <p>Generate a unique message for the user to sign</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-method post">POST</span>
+                <span class="code-endpoint">/auth/messages</span>
+              </div>
+              <pre><code class="language-json">{
+  "walletAddress": "0xYourWalletAddress"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>Sign Message</h4>
+            <p>User signs the message with their wallet</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-lang">JavaScript</span>
+              </div>
+              <pre><code class="language-javascript">// Using ethers.js
+const signature = await signer.signMessage(message);</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Login & Get JWT</h4>
+            <p>Submit signature to receive authentication token</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-method post">POST</span>
+                <span class="code-endpoint">/auth/login</span>
+              </div>
+              <pre><code class="language-json">{
+  "walletAddress": "0xYourWalletAddress",
+  "nonce": "abc123xyz789",
+  "signature": "0xSignedMessageHash...",
+  "referralCode": "OPTIONAL_REFERRAL_CODE"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Headers Info -->
+      <div class="headers-info">
+        <h3>Required Headers</h3>
+        <div class="headers-grid">
+          <div class="header-item">
+            <code class="header-name">api-key</code>
+            <span class="header-desc">Your API key (required for all requests)</span>
+          </div>
+          <div class="header-item">
+            <code class="header-name">Authorization</code>
+            <span class="header-desc">Bearer token for authenticated endpoints</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Section -->
+  <section id="membership" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Membership</span>
+        <h2 class="section-title">Coverage Management</h2>
+        <p class="section-desc">
+          Check coverage status, manage wallets, and handle membership operations through the API.
+        </p>
+      </div>
+
+      <!-- API Endpoints -->
+      <div class="endpoints-list">
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method get">GET</span>
+            <code class="endpoint-path">/membership/check-cover/{walletAddress}</code>
+            <span class="endpoint-badge public">Public</span>
+          </div>
+          <p class="endpoint-desc">Check if a wallet has active coverage. No authentication required.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Response</span>
+            <pre><code class="language-json">{
+  "statusCode": 200,
+  "hasCover": true,
+  "isActive": true,
+  "validFrom": "2024-01-01T00:00:00.000Z",
+  "validUntil": "2025-01-01T00:00:00.000Z",
+  "coverAmount": 5,
+  "coverID": 42,
+  "activeClaims": []
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method get">GET</span>
+            <code class="endpoint-path">/membership/wallets</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Retrieve the list of wallets covered under the user's membership.</p>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method post">POST</span>
+            <code class="endpoint-path">/membership/add-wallet</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Add additional wallets to an existing membership.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Request Body</span>
+            <pre><code class="language-json">{
+  "walletAddresses": ["0xWallet1...", "0xWallet2..."],
+  "coverID": 42
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method get">GET</span>
+            <code class="endpoint-path">/users/{walletAddress}</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Retrieve the authenticated user's account information including membership details.</p>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method post">POST</span>
+            <code class="endpoint-path">/users/terms/accept</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Accept terms and conditions before purchasing membership.</p>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method post">POST</span>
+            <code class="endpoint-path">/membership/top-up</code>
+            <span class="endpoint-badge public">Public</span>
+          </div>
+          <p class="endpoint-desc">Record a top-up transaction after executing on-chain.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Request Body</span>
+            <pre><code class="language-json">{
+  "coverID": 42,
+  "walletAddress": "0xWalletAddress...",
+  "coveredAmount": 2,
+  "transactionHash": "0xTransactionHash..."
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Smart Contracts Section -->
+  <section id="contracts" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Smart Contracts</span>
+        <h2 class="section-title">On-Chain Operations</h2>
+        <p class="section-desc">
+          Purchase and manage memberships directly through the FairSideNetwork contract on Abstract chain.
+        </p>
+      </div>
+
+      <!-- Contract Functions -->
+      <div class="contract-functions">
+        <div class="function-card">
+          <div class="function-header">
+            <h4>purchaseMembership</h4>
+            <span class="function-type">payable</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function purchaseMembership(
+    uint256 costShareBenefit,  // Amount in wei
+    address coverAddress,      // Address to cover
+    uint256 membershipType     // 0 for MainNet
+) external payable</code></pre>
+          </div>
+          <p class="function-desc">Purchase a new membership with the specified coverage amount.</p>
+        </div>
+
+        <div class="function-card">
+          <div class="function-header">
+            <h4>estimateCost</h4>
+            <span class="function-type">view</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function estimateCost(
+    uint256 costShareBenefit,  // Amount in wei
+    uint256 accountDuration,   // 0 for new membership
+    uint256 membershipTypeId   // 0 for MainNet
+) external view returns (uint256)</code></pre>
+          </div>
+          <p class="function-desc">Calculate the required payment for a membership.</p>
+        </div>
+
+        <div class="function-card">
+          <div class="function-header">
+            <h4>topupMembership</h4>
+            <span class="function-type">payable</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function topupMembership(
+    uint256 coverId,
+    uint256 costshareBenefit  // Additional amount in wei
+) external payable</code></pre>
+          </div>
+          <p class="function-desc">Increase the coverage amount of an existing membership.</p>
+        </div>
+
+        <div class="function-card">
+          <div class="function-header">
+            <h4>renewMembership</h4>
+            <span class="function-type">payable</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function renewMembership(
+    uint256 coverId,
+    uint256 costShareBenefit,
+    uint256 membershipTypeId
+) external payable</code></pre>
+          </div>
+          <p class="function-desc">Renew an expired or expiring membership.</p>
+        </div>
+
+        <div class="function-card">
+          <div class="function-header">
+            <h4>getAccountMembership</h4>
+            <span class="function-type">view</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function getAccountMembership(
+    address account
+) external view returns (uint256[])</code></pre>
+          </div>
+          <p class="function-desc">Get all cover IDs associated with an account.</p>
+        </div>
+
+        <div class="function-card">
+          <div class="function-header">
+            <h4>getMembership</h4>
+            <span class="function-type">view</span>
+          </div>
+          <div class="function-signature">
+            <pre><code>function getMembership(
+    uint256 coverId
+) external view returns (Membership)</code></pre>
+          </div>
+          <p class="function-desc">Get detailed membership information by cover ID.</p>
+        </div>
+      </div>
+
+      <!-- Events -->
+      <div class="events-section">
+        <h3 class="events-title">Contract Events</h3>
+        <div class="events-grid">
+          <div class="event-card">
+            <h5>NewMembership</h5>
+            <code>event NewMembership(address indexed member, uint256 coverId, uint256 costshareBenefit, address indexed coverAddress, uint8 tokenType, uint256 membershipTypeId)</code>
+          </div>
+          <div class="event-card">
+            <h5>TopUpCover</h5>
+            <code>event TopUpCover(address indexed member, uint256 coverId, uint256 costshareBenefit, uint8 tokenType)</code>
+          </div>
+          <div class="event-card">
+            <h5>RenewMembership</h5>
+            <code>event RenewMembership(address indexed member, uint256 indexed coverId, uint256 costshareBenefit, uint8 tokenType)</code>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Crypto Payments Section (NowPayments) -->
+  <section id="crypto-payments" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Crypto Payments</span>
+        <h2 class="section-title">Pay with 200+ Cryptocurrencies</h2>
+        <p class="section-desc">
+          Allow users to purchase memberships using Bitcoin, USDT, USDC, and 200+ other cryptocurrencies via NowPayments integration.
+        </p>
+      </div>
+
+      <!-- Payment Flow Overview -->
+      <div class="cards-grid">
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+          </div>
+          <h3>Real-time Estimates</h3>
+          <p>Get live exchange rates for 200+ cryptocurrencies. Shows exact amount needed in user's chosen currency.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3>Secure Payments</h3>
+          <p>Time-limited payment windows, exact amount validation, and real-time transaction confirmation tracking.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Automatic Fulfillment</h3>
+          <p>Once payment is confirmed, membership is automatically purchased on-chain via webhook processing.</p>
+        </div>
+      </div>
+
+      <!-- API Endpoints -->
+      <div class="endpoints-list">
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method post">POST</span>
+            <code class="endpoint-path">/nowpayments/estimates</code>
+            <span class="endpoint-badge public">API Key Required</span>
+          </div>
+          <p class="endpoint-desc">Get payment estimates for all supported cryptocurrencies based on coverage amount.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Request Body</span>
+            <pre><code class="language-json">{
+  "coverAmount": 5
+}</code></pre>
+          </div>
+          <div class="endpoint-response">
+            <span class="response-label">Response</span>
+            <pre><code class="language-json">{
+  "coverAmount": 5,
+  "ethAmount": 0.0975,
+  "estimates": [
+    {
+      "currency": "btc",
+      "network": "btc",
+      "estimatedAmount": 0.00102345
+    },
+    {
+      "currency": "usdt",
+      "network": "eth",
+      "estimatedAmount": 195.50
+    },
+    {
+      "currency": "usdc",
+      "network": "eth",
+      "estimatedAmount": 195.45
+    }
+  ]
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method post">POST</span>
+            <code class="endpoint-path">/nowpayments/payments</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Create a payment intention. Returns payment address and exact amount to send.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Request Body</span>
+            <pre><code class="language-json">{
+  "coverAmount": 5,
+  "membershipTypeId": "0",
+  "paymentCurrency": "btc",
+  "paymentNetwork": "btc",
+  "paymentType": "new_purchase"
+}</code></pre>
+          </div>
+          <div class="endpoint-response">
+            <span class="response-label">Response</span>
+            <pre><code class="language-json">{
+  "paymentId": "550e8400-e29b-41d4-a716-446655440000",
+  "paymentAddress": "bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh",
+  "paymentAmount": 0.00102345,
+  "paymentCurrency": "btc",
+  "paymentNetwork": "btc",
+  "coverAmount": 5,
+  "coverCostAmount": 0.0975,
+  "expiresAt": "2024-01-15T12:30:00.000Z"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method get">GET</span>
+            <code class="endpoint-path">/nowpayments/payments/{paymentId}</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">Check the status of a payment. Poll this endpoint to track payment progress.</p>
+          <div class="endpoint-response">
+            <span class="response-label">Response</span>
+            <pre><code class="language-json">{
+  "paymentId": "550e8400-e29b-41d4-a716-446655440000",
+  "paymentStatus": "finished",
+  "membershipPurchaseStatus": "completed",
+  "membershipPurchaseTxHash": "0x1234...abcd",
+  "paymentCurrency": "btc",
+  "paymentNetwork": "btc",
+  "paymentAmount": 0.00102345,
+  "coverAmount": 5,
+  "coverCostAmount": 0.0975,
+  "createdAt": "2024-01-15T12:00:00.000Z",
+  "expiresAt": "2024-01-15T12:30:00.000Z"
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="endpoint">
+          <div class="endpoint-header">
+            <span class="code-method get">GET</span>
+            <code class="endpoint-path">/nowpayments/payments</code>
+            <span class="endpoint-badge auth">Auth Required</span>
+          </div>
+          <p class="endpoint-desc">List all payments for the authenticated user.</p>
+        </div>
+      </div>
+
+      <!-- Payment Types & Statuses Reference -->
+      <div class="config-section" style="margin-top: var(--space-2xl);">
+        <h3 class="config-title">Payment Types</h3>
+        <div class="table-wrapper">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Value</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>new_purchase</code></td>
+                <td>New membership purchase</td>
+              </tr>
+              <tr>
+                <td><code>topup</code></td>
+                <td>Top-up existing membership coverage</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="config-title">Payment Statuses</h3>
+        <div class="table-wrapper">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>waiting</code></td>
+                <td>Waiting for user to send payment</td>
+              </tr>
+              <tr>
+                <td><code>confirming</code></td>
+                <td>Payment received, waiting for confirmations</td>
+              </tr>
+              <tr>
+                <td><code>confirmed</code></td>
+                <td>Payment confirmed on blockchain</td>
+              </tr>
+              <tr>
+                <td><code>finished</code></td>
+                <td>Payment completed successfully</td>
+              </tr>
+              <tr>
+                <td><code>partially_paid</code></td>
+                <td>Partial amount received</td>
+              </tr>
+              <tr>
+                <td><code>expired</code></td>
+                <td>Payment window expired</td>
+              </tr>
+              <tr>
+                <td><code>failed</code></td>
+                <td>Payment failed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="config-title">Membership Purchase Statuses</h3>
+        <div class="table-wrapper">
+          <table class="config-table">
+            <thead>
+              <tr>
+                <th>Status</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>pending</code></td>
+                <td>Waiting for payment to complete</td>
+              </tr>
+              <tr>
+                <td><code>completed</code></td>
+                <td>Membership purchased on-chain</td>
+              </tr>
+              <tr>
+                <td><code>failed</code></td>
+                <td>On-chain purchase failed</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Integration Flow -->
+      <div class="auth-flow" style="margin-top: var(--space-3xl);">
+        <h3 style="text-align: center; margin-bottom: var(--space-2xl); color: var(--neutral-gray-900);">Crypto Payment Flow</h3>
+        
+        <div class="flow-step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h4>Get Estimates</h4>
+            <p>Fetch payment estimates for all supported cryptocurrencies</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-method post">POST</span>
+                <span class="code-endpoint">/nowpayments/estimates</span>
+              </div>
+              <pre><code>{ "coverAmount": 5 }</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h4>User Selects Currency</h4>
+            <p>Display available currencies and let user choose their preferred payment method</p>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h4>Create Payment</h4>
+            <p>Create payment intention with selected currency</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-method post">POST</span>
+                <span class="code-endpoint">/nowpayments/payments</span>
+              </div>
+              <pre><code>{
+  "coverAmount": 5,
+  "membershipTypeId": "0",
+  "paymentCurrency": "btc",
+  "paymentNetwork": "btc",
+  "paymentType": "new_purchase"
+}</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h4>Display Payment Details</h4>
+            <p>Show user the payment address and exact amount to send. Include countdown timer for expiration.</p>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h4>Poll for Status</h4>
+            <p>Poll payment status until completed or expired</p>
+            <div class="code-block">
+              <div class="code-header">
+                <span class="code-method get">GET</span>
+                <span class="code-endpoint">/nowpayments/payments/{paymentId}</span>
+              </div>
+              <pre><code>// Poll every 5-10 seconds
+// Stop when paymentStatus is "finished" or "expired"</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <div class="flow-connector"></div>
+
+        <div class="flow-step">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h4>Membership Created</h4>
+            <p>When <code>membershipPurchaseStatus</code> is <code>"completed"</code>, the membership has been purchased on-chain. The transaction hash is available in <code>membershipPurchaseTxHash</code>.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supported Currencies Note -->
+      <div class="headers-info" style="margin-top: var(--space-2xl);">
+        <h3>Supported Cryptocurrencies</h3>
+        <p style="color: var(--neutral-gray-700); margin-bottom: var(--space-md);">
+          The <code>/nowpayments/estimates</code> endpoint returns all currently supported currencies with their networks. Common options include:
+        </p>
+        <div class="headers-grid">
+          <div class="header-item">
+            <code class="header-name">BTC</code>
+            <span class="header-desc">Bitcoin (btc network)</span>
+          </div>
+          <div class="header-item">
+            <code class="header-name">ETH</code>
+            <span class="header-desc">Ethereum (eth network)</span>
+          </div>
+          <div class="header-item">
+            <code class="header-name">USDT</code>
+            <span class="header-desc">Tether</span>
+          </div>
+          <div class="header-item">
+            <code class="header-name">USDC</code>
+            <span class="header-desc">USD Coin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Examples Section -->
+  <section id="examples" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Examples</span>
+        <h2 class="section-title">Complete Integration Flow</h2>
+        <p class="section-desc">
+          Full example showing authentication through to membership purchase.
+        </p>
+      </div>
+
+      <div class="example-tabs">
+        <button class="tab-btn active" data-tab="full-flow">Full Flow</button>
+        <button class="tab-btn" data-tab="purchase">Purchase Only</button>
+        <button class="tab-btn" data-tab="check-status">Check Status</button>
+      </div>
+
+      <div class="example-content">
+        <div class="tab-panel active" id="full-flow">
+          <div class="code-block large">
+            <div class="code-header">
+              <span class="code-lang">JavaScript (ethers.js)</span>
+              <button class="copy-btn" data-copy="full-flow-code">Copy</button>
+            </div>
+            <pre id="full-flow-code"><code class="language-javascript">import { ethers } from 'ethers';
+
+const API_BASE_URL = 'https://api.fairside.io/v1';
+const API_KEY = 'your-api-key';
+const NETWORK_CONTRACT = '0x17aD4490A9181cf01F2Be059765d4f2d8Ee6d8a0';
+
+// 1. Generate message to sign
+const generateMessage = async (walletAddress) => {
+  const response = await fetch(`${API_BASE_URL}/auth/messages`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': API_KEY,
+    },
+    body: JSON.stringify({ walletAddress }),
+  });
+  return response.json();
+};
+
+// 2. Login with signed message
+const login = async (walletAddress, nonce, signature) => {
+  const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': API_KEY,
+    },
+    body: JSON.stringify({ walletAddress, nonce, signature }),
+  });
+  const data = await response.json();
+  return data.jwtToken;
+};
+
+// 3. Accept terms
+const acceptTerms = async (walletAddress, token) => {
+  await fetch(`${API_BASE_URL}/users/terms/accept`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': API_KEY,
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({ walletAddress }),
+  });
+};
+
+// 4. Check membership status
+const checkMembership = async (walletAddress) => {
+  const response = await fetch(
+    `${API_BASE_URL}/membership/check-cover/${walletAddress}`,
+    { headers: { 'api-key': API_KEY } }
+  );
+  return response.json();
+};
+
+// 5. Purchase membership on Abstract chain
+const purchaseMembership = async (signer, coverAmount, coverAddress) => {
+  const networkContract = new ethers.Contract(
+    NETWORK_CONTRACT,
+    FairSideNetworkABI,
+    signer
+  );
+
+  const amountWei = ethers.parseEther(coverAmount.toString());
+  const fee = await networkContract.estimateCost(amountWei, 0, 0);
+
+  const tx = await networkContract.purchaseMembership(
+    amountWei,
+    coverAddress,
+    0, // MainNet membership type
+    { value: fee }
+  );
+
+  return tx.wait();
+};
+
+// Main integration flow
+async function main() {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const signer = await provider.getSigner();
+  const walletAddress = await signer.getAddress();
+
+  // Auth flow
+  const { authMessage } = await generateMessage(walletAddress);
+  const signature = await signer.signMessage(authMessage.message);
+  const token = await login(walletAddress, authMessage.nonce, signature);
+
+  // Accept terms
+  await acceptTerms(walletAddress, token);
+
+  // Check if already has membership
+  const membershipStatus = await checkMembership(walletAddress);
+  if (membershipStatus.hasCover) {
+    console.log('Already has membership');
+    return;
+  }
+
+  // Purchase membership (5 ETH coverage)
+  const receipt = await purchaseMembership(signer, 5, walletAddress);
+  console.log('Membership purchased:', receipt.hash);
+}</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="purchase">
+          <div class="code-block large">
+            <div class="code-header">
+              <span class="code-lang">JavaScript (ethers.js)</span>
+              <button class="copy-btn" data-copy="purchase-code">Copy</button>
+            </div>
+            <pre id="purchase-code"><code class="language-javascript">import { ethers } from 'ethers';
+
+const NETWORK_CONTRACT = '0x17aD4490A9181cf01F2Be059765d4f2d8Ee6d8a0';
+
+// FairSideNetwork ABI (minimal)
+const FairSideNetworkABI = [
+  'function purchaseMembership(uint256 costShareBenefit, address coverAddress, uint256 membershipType) external payable',
+  'function estimateCost(uint256 costShareBenefit, uint256 accountDuration, uint256 membershipTypeId) external view returns (uint256)',
+  'function getAccountMembership(address account) external view returns (uint256[])',
+];
+
+async function purchaseMembership(coverAmountETH) {
+  const provider = new ethers.BrowserProvider(window.ethereum);
+  const signer = await provider.getSigner();
+  const walletAddress = await signer.getAddress();
+  
+  const networkContract = new ethers.Contract(
+    NETWORK_CONTRACT,
+    FairSideNetworkABI,
+    signer
+  );
+
+  // Check if user already has membership
+  const coverIds = await networkContract.getAccountMembership(walletAddress);
+  if (coverIds.length >= 1) {
+    throw new Error('User already has a membership');
+  }
+
+  // Calculate cost
+  const amountWei = ethers.parseEther(coverAmountETH.toString());
+  const fee = await networkContract.estimateCost(amountWei, 0, 0);
+
+  // Purchase
+  const tx = await networkContract.purchaseMembership(
+    amountWei,
+    walletAddress,
+    0, // MainNet type
+    { value: fee }
+  );
+
+  const receipt = await tx.wait();
+  console.log('Transaction hash:', receipt.hash);
+  
+  return receipt;
+}
+
+// Usage
+purchaseMembership(5); // 5 ETH coverage</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="check-status">
+          <div class="code-block large">
+            <div class="code-header">
+              <span class="code-lang">JavaScript</span>
+              <button class="copy-btn" data-copy="status-code">Copy</button>
+            </div>
+            <pre id="status-code"><code class="language-javascript">const API_BASE_URL = 'https://api.fairside.io/v1';
+const API_KEY = 'your-api-key';
+
+async function checkCoverageStatus(walletAddress) {
+  const response = await fetch(
+    `${API_BASE_URL}/membership/check-cover/${walletAddress}`,
+    {
+      headers: {
+        'api-key': API_KEY,
+      },
+    }
+  );
+
+  const data = await response.json();
+  
+  return {
+    hasCoverage: data.hasCover,
+    isActive: data.isActive,
+    coverAmount: data.coverAmount,
+    validUntil: new Date(data.validUntil),
+    hasActiveClaims: data.activeClaims.length > 0,
+  };
+}
+
+// Usage
+const status = await checkCoverageStatus('0x...');
+
+if (status.hasCoverage && status.isActive) {
+  console.log(`Protected with ${status.coverAmount} ETH until ${status.validUntil}`);
+} else if (status.hasCoverage && !status.isActive) {
+  console.log('Coverage expired - renewal needed');
+} else {
+  console.log('No coverage - purchase needed');
+}</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Errors Section -->
+  <section id="errors" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Reference</span>
+        <h2 class="section-title">Error Handling</h2>
+      </div>
+
+      <div class="errors-grid">
+        <div class="error-category">
+          <h4>API Errors</h4>
+          <div class="error-table">
+            <div class="error-row">
+              <span class="error-code">400</span>
+              <span class="error-desc">Bad Request - Invalid input</span>
+            </div>
+            <div class="error-row">
+              <span class="error-code">401</span>
+              <span class="error-desc">Unauthorized - Invalid or expired token</span>
+            </div>
+            <div class="error-row">
+              <span class="error-code">403</span>
+              <span class="error-desc">Forbidden - Access denied</span>
+            </div>
+            <div class="error-row">
+              <span class="error-code">404</span>
+              <span class="error-desc">Not Found - Resource not found</span>
+            </div>
+            <div class="error-row">
+              <span class="error-code">500</span>
+              <span class="error-desc">Internal Server Error</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="error-category">
+          <h4>Contract Errors</h4>
+          <div class="error-table">
+            <div class="error-row">
+              <code class="error-code-text">"Only one cover allowed"</code>
+              <span class="error-desc">User already has active membership</span>
+            </div>
+            <div class="error-row">
+              <code class="error-code-text">"Capital pool not funded"</code>
+              <span class="error-desc">Protocol capital pool is empty</span>
+            </div>
+            <div class="error-row">
+              <code class="error-code-text">"Cover amount invalid"</code>
+              <span class="error-desc">Amount &lt; 0.25 ETH or &gt; 10 ETH</span>
+            </div>
+            <div class="error-row">
+              <code class="error-code-text">"Cannot top-up during claim"</code>
+              <span class="error-desc">Cover blocked due to ongoing claim</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Started Section -->
+  <section id="get-started" class="section section-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2 class="cta-title">Ready to integrate?</h2>
+        <p class="cta-desc">Get your API key and start building wallet protection into your dApp.</p>
+        <div class="cta-actions">
+          <a href="mailto:developers@fairside.io" class="btn btn-primary btn-lg">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>Request API Key</span>
+          </a>
+          <a href="https://github.com/fairside" class="btn btn-secondary btn-lg" target="_blank">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            <span>View on GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-brand">
+          <div class="nav-logo">
+            <img src="logo.svg" alt="Fairside" class="logo-img footer-logo">
+          </div>
+          <p>Wallet Coverage for Drains, Scams, and more. Community-driven, scalable, on-chain asset protection.</p>
+        </div>
+        <div class="footer-links">
+          <div class="footer-column">
+            <h5>Documentation</h5>
+            <a href="#overview">Overview</a>
+            <a href="#authentication">Authentication</a>
+            <a href="#membership">Membership API</a>
+            <a href="#contracts">Smart Contracts</a>
+            <a href="#crypto-payments">Crypto Payments</a>
+          </div>
+          <div class="footer-column">
+            <h5>Resources</h5>
+            <a href="https://fairside.io" target="_blank">Website</a>
+            <a href="https://fairside.gitbook.io/fairsidenetwork" target="_blank">Full Documentation</a>
+            <a href="https://x.com/FairsideNetwork" target="_blank">X (Twitter)</a>
+          </div>
+          <div class="footer-column">
+            <h5>Support</h5>
+            <a href="mailto:developers@fairside.io">developers@fairside.io</a>
+            <a href="https://discord.gg/fairside" target="_blank">Discord</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 Fairside Protocol. All rights reserved.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
