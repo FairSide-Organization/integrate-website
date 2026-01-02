@@ -282,7 +282,7 @@ function initScrollIndicator() {
   });
 }
 
-// Syntax highlighting removed - using plain code blocks
+// Syntax highlighting handled by Prism.js (loaded in HTML)
 
 /**
  * Confetti Effects - Celebrate key interactions

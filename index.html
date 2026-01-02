@@ -12,6 +12,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
   <link rel="stylesheet" href="styles.css">
+  <!-- Prism.js Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
   <meta name="description" content="Integrate Fairside Protocol into your dApp. REST API and smart contract documentation for decentralized wallet coverage.">
   <meta name="theme-color" content="#FFFFFF">
 </head>
@@ -515,7 +517,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">payable</span>
           </div>
           <div class="function-signature">
-            <pre><code>function purchaseMembership(
+            <pre><code class="language-javascript">function purchaseMembership(
     uint256 costShareBenefit,  // Amount in wei
     address coverAddress,      // Address to cover
     uint256 membershipType     // 0 for MainNet
@@ -530,7 +532,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">view</span>
           </div>
           <div class="function-signature">
-            <pre><code>function estimateCost(
+            <pre><code class="language-javascript">function estimateCost(
     uint256 costShareBenefit,  // Amount in wei
     uint256 accountDuration,   // 0 for new membership
     uint256 membershipTypeId   // 0 for MainNet
@@ -545,7 +547,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">payable</span>
           </div>
           <div class="function-signature">
-            <pre><code>function topupMembership(
+            <pre><code class="language-javascript">function topupMembership(
     uint256 coverId,
     uint256 costshareBenefit  // Additional amount in wei
 ) external payable</code></pre>
@@ -559,7 +561,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">payable</span>
           </div>
           <div class="function-signature">
-            <pre><code>function renewMembership(
+            <pre><code class="language-javascript">function renewMembership(
     uint256 coverId,
     uint256 costShareBenefit,
     uint256 membershipTypeId
@@ -574,7 +576,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">view</span>
           </div>
           <div class="function-signature">
-            <pre><code>function getAccountMembership(
+            <pre><code class="language-javascript">function getAccountMembership(
     address account
 ) external view returns (uint256[])</code></pre>
           </div>
@@ -587,7 +589,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
             <span class="function-type">view</span>
           </div>
           <div class="function-signature">
-            <pre><code>function getMembership(
+            <pre><code class="language-javascript">function getMembership(
     uint256 coverId
 ) external view returns (Membership)</code></pre>
           </div>
@@ -875,7 +877,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
                 <span class="code-method post">POST</span>
                 <span class="code-endpoint">/nowpayments/estimates</span>
               </div>
-              <pre><code>{ "coverAmount": 5 }</code></pre>
+              <pre><code class="language-json">{ "coverAmount": 5 }</code></pre>
             </div>
           </div>
         </div>
@@ -898,7 +900,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
                 <span class="code-method post">POST</span>
                 <span class="code-endpoint">/nowpayments/payments</span>
               </div>
-              <pre><code>{
+              <pre><code class="language-json">{
   "coverAmount": 5,
   "membershipTypeId": "0",
   "paymentCurrency": "btc",
@@ -927,7 +929,7 @@ const signature = await signer.signMessage(authMessage.message);</code></pre>
                 <span class="code-method get">GET</span>
                 <span class="code-endpoint">/nowpayments/payments/{paymentId}</span>
               </div>
-              <pre><code>// Poll every 5-10 seconds
+              <pre><code class="language-javascript">// Poll every 5-10 seconds
 // Stop when paymentStatus is "finished" or "expired"</code></pre>
             </div>
           </div>
@@ -1538,6 +1540,12 @@ if (status.hasCoverage && status.isActive) {
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <!-- Prism.js Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

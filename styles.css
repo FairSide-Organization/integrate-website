@@ -1030,10 +1030,78 @@ code {
   overflow-x: auto;
   font-size: 0.8125rem;
   line-height: 1.6;
+  margin: 0;
 }
 
 .code-block code {
   color: var(--neutral-gray-400);
+  font-family: var(--font-mono);
+}
+
+/* Prism.js syntax highlighting overrides for dark theme */
+.code-block pre[class*="language-"] {
+  background: transparent;
+  padding: var(--space-md);
+}
+
+.code-block code[class*="language-"] {
+  color: #e0e0e0;
+}
+
+/* Ensure Prism tokens are visible on dark background */
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata {
+  color: #6a737d;
+}
+
+.code-block .token.punctuation {
+  color: #e0e0e0;
+}
+
+.code-block .token.property,
+.code-block .token.tag,
+.code-block .token.boolean,
+.code-block .token.number,
+.code-block .token.constant,
+.code-block .token.symbol,
+.code-block .token.deleted {
+  color: #79b8ff;
+}
+
+.code-block .token.selector,
+.code-block .token.attr-name,
+.code-block .token.string,
+.code-block .token.char,
+.code-block .token.builtin,
+.code-block .token.inserted {
+  color: #9ecbff;
+}
+
+.code-block .token.operator,
+.code-block .token.entity,
+.code-block .token.url,
+.code-block .language-css .token.string,
+.code-block .style .token.string {
+  color: #f97583;
+}
+
+.code-block .token.atrule,
+.code-block .token.attr-value,
+.code-block .token.keyword {
+  color: #b392f0;
+}
+
+.code-block .token.function,
+.code-block .token.class-name {
+  color: #b392f0;
+}
+
+.code-block .token.regex,
+.code-block .token.important,
+.code-block .token.variable {
+  color: #ffab70;
 }
 
 .code-note {
