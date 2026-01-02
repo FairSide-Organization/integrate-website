@@ -269,6 +269,19 @@
   "walletAddress": "0xYourWalletAddress"
 }</code></pre>
             </div>
+            <div class="code-block" style="margin-top: var(--space-md);">
+              <div class="code-header">
+                <span class="code-lang">Response</span>
+              </div>
+              <pre><code class="language-json">{
+  "authMessage": {
+    "nonce": "a1b2c3d4-e5f6-...",
+    "walletAddress": "0xYourWalletAddress",
+    "message": "Welcome to Fairside! ..."
+  }
+}</code></pre>
+            </div>
+            <p class="code-note">The <code>message</code> field contains the full text to sign, including wallet address and nonce.</p>
           </div>
         </div>
 
@@ -276,13 +289,13 @@
           <div class="step-number">2</div>
           <div class="step-content">
             <h4>Sign Message</h4>
-            <p>User signs the message with their wallet</p>
+            <p>User signs the <code>authMessage.message</code> with their wallet</p>
             <div class="code-block">
               <div class="code-header">
-                <span class="code-lang">JavaScript</span>
+                <span class="code-lang">JavaScript (ethers.js)</span>
               </div>
-              <pre><code class="language-javascript">// Using ethers.js
-const signature = await signer.signMessage(message);</code></pre>
+              <pre><code class="language-javascript">// Sign the message from the auth response
+const signature = await signer.signMessage(authMessage.message);</code></pre>
             </div>
           </div>
         </div>
@@ -291,7 +304,7 @@ const signature = await signer.signMessage(message);</code></pre>
           <div class="step-number">3</div>
           <div class="step-content">
             <h4>Login & Get JWT</h4>
-            <p>Submit signature to receive authentication token</p>
+            <p>Submit signature with the nonce to receive authentication token</p>
             <div class="code-block">
               <div class="code-header">
                 <span class="code-method post">POST</span>
@@ -299,9 +312,9 @@ const signature = await signer.signMessage(message);</code></pre>
               </div>
               <pre><code class="language-json">{
   "walletAddress": "0xYourWalletAddress",
-  "nonce": "abc123xyz789",
+  "nonce": "a1b2c3d4-e5f6-...",
   "signature": "0xSignedMessageHash...",
-  "referralCode": "OPTIONAL_REFERRAL_CODE"
+  "referralCode": "REFERRAL_CODE"
 }</code></pre>
             </div>
           </div>
