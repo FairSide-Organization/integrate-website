@@ -172,12 +172,18 @@ code {
 }
 
 .logo-img {
-  height: 24px;
+  height: 32px;
   width: auto;
 }
 
+/* Invert white logo to dark for light backgrounds */
+.logo-dark {
+  filter: brightness(0);
+}
+
+/* Footer logo stays white on dark background */
 .footer-logo {
-  filter: brightness(0) invert(1);
+  filter: none;
 }
 
 .sidebar-nav {
