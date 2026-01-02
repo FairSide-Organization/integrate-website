@@ -1004,15 +1004,16 @@ const signature = await signer.signMessage(message);</code></pre>
     <div class="container">
       <div class="section-header">
         <span class="section-tag">Examples</span>
-        <h2 class="section-title">Complete Integration Flow</h2>
+        <h2 class="section-title">Complete Integration Examples</h2>
         <p class="section-desc">
-          Full example showing authentication through to membership purchase.
+          Ready-to-use code examples for both payment methods: Native Payment (Abstract chain) and Crypto Payment (NowPayments).
         </p>
       </div>
 
       <div class="example-tabs">
-        <button class="tab-btn active" data-tab="full-flow">Full Flow</button>
-        <button class="tab-btn" data-tab="purchase">Purchase Only</button>
+        <button class="tab-btn active" data-tab="full-flow">Native Payment</button>
+        <button class="tab-btn" data-tab="nowpayments">Crypto Payment</button>
+        <button class="tab-btn" data-tab="purchase">Contract Only</button>
         <button class="tab-btn" data-tab="check-status">Check Status</button>
       </div>
 
@@ -1124,6 +1125,131 @@ async function main() {
   const receipt = await purchaseMembership(signer, 5, walletAddress);
   console.log('Membership purchased:', receipt.hash);
 }</code></pre>
+          </div>
+        </div>
+
+        <div class="tab-panel" id="nowpayments">
+          <div class="code-block large">
+            <div class="code-header">
+              <span class="code-lang">JavaScript - Crypto Payment Flow</span>
+              <button class="copy-btn" data-copy="nowpayments-code">Copy</button>
+            </div>
+            <pre id="nowpayments-code"><code class="language-javascript">const API_BASE_URL = 'https://api.fairside.io/v1';
+const API_KEY = 'your-api-key';
+const POLLING_INTERVAL = 10000; // 10 seconds
+
+// 1. Get payment estimates for all supported currencies
+async function getPaymentEstimates(coverAmount) {
+  const response = await fetch(`${API_BASE_URL}/nowpayments/estimates`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': API_KEY,
+    },
+    body: JSON.stringify({ coverAmount }),
+  });
+  
+  const data = await response.json();
+  // Returns: { coverAmount, ethAmount, estimates: [{ currency, network, estimatedAmount }] }
+  return data;
+}
+
+// 2. Create payment intention with selected currency
+async function createPayment(token, params) {
+  const response = await fetch(`${API_BASE_URL}/nowpayments/payments`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'api-key': API_KEY,
+      'Authorization': `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      coverAmount: params.coverAmount,
+      membershipTypeId: '0', // MainNet
+      paymentCurrency: params.currency,  // e.g., 'usdt', 'btc'
+      paymentNetwork: params.network,    // e.g., 'erc20', 'bitcoin'
+      paymentType: 'new_purchase',       // or 'topup'
+    }),
+  });
+  
+  const data = await response.json();
+  // Returns: { paymentId, paymentAddress, paymentAmount, expiresAt, ... }
+  return data;
+}
+
+// 3. Poll payment status until complete
+async function pollPaymentStatus(token, paymentId, onStatusUpdate) {
+  const checkStatus = async () => {
+    const response = await fetch(
+      `${API_BASE_URL}/nowpayments/payments/${paymentId}`,
+      {
+        headers: {
+          'api-key': API_KEY,
+          'Authorization': `Bearer ${token}`,
+        },
+      }
+    );
+    
+    const status = await response.json();
+    onStatusUpdate(status);
+    
+    // Payment statuses: waiting, confirming, confirmed, sending, finished, failed, expired
+    if (status.paymentStatus === 'finished') {
+      console.log('Payment complete! Tx:', status.membershipPurchaseTxHash);
+      return status;
+    }
+    
+    if (status.paymentStatus === 'failed' || status.paymentStatus === 'expired') {
+      throw new Error(`Payment ${status.paymentStatus}`);
+    }
+    
+    // Continue polling
+    await new Promise(resolve => setTimeout(resolve, POLLING_INTERVAL));
+    return checkStatus();
+  };
+  
+  return checkStatus();
+}
+
+// Complete Crypto Payment Flow
+async function purchaseWithCrypto(token, coverAmount, preferredCurrency = 'usdt') {
+  // Step 1: Get estimates
+  const estimates = await getPaymentEstimates(coverAmount);
+  console.log('Available currencies:', estimates.estimates);
+  
+  // Step 2: Find preferred currency
+  const selected = estimates.estimates.find(
+    e => e.currency === preferredCurrency
+  );
+  
+  if (!selected) {
+    throw new Error(`Currency ${preferredCurrency} not available`);
+  }
+  
+  // Step 3: Create payment
+  const payment = await createPayment(token, {
+    coverAmount,
+    currency: selected.currency,
+    network: selected.network,
+  });
+  
+  console.log('Send exactly', payment.paymentAmount, selected.currency);
+  console.log('To address:', payment.paymentAddress);
+  console.log('Expires at:', payment.expiresAt);
+  
+  // Step 4: Poll until user sends payment and it's confirmed
+  // Fairside handles the on-chain membership purchase automatically
+  const finalStatus = await pollPaymentStatus(token, payment.paymentId, (status) => {
+    console.log('Status:', status.paymentStatus);
+  });
+  
+  return finalStatus;
+}
+
+// Usage
+purchaseWithCrypto(authToken, 5, 'usdt')
+  .then(status => console.log('Membership created:', status.membershipPurchaseTxHash))
+  .catch(err => console.error('Payment failed:', err));</code></pre>
           </div>
         </div>
 
