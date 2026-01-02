@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTabs();
   initCopyButtons();
   initScrollAnimations();
+  initScrollIndicator();
 });
 
 /**
@@ -182,6 +183,54 @@ function initScrollAnimations() {
     }
   `;
   document.head.appendChild(style);
+}
+
+/**
+ * Scroll Indicator - Hide when user scrolls down
+ */
+function initScrollIndicator() {
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  if (!scrollIndicator) return;
+
+  let ticking = false;
+
+  function updateScrollIndicator() {
+    const scrollY = window.scrollY;
+    
+    if (scrollY > 100) {
+      scrollIndicator.classList.add('hidden');
+    } else {
+      scrollIndicator.classList.remove('hidden');
+    }
+    
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateScrollIndicator);
+      ticking = true;
+    }
+  });
+
+  // Smooth scroll when clicking the indicator
+  scrollIndicator.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = scrollIndicator.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      const nav = document.querySelector('.nav');
+      const navHeight = nav ? nav.offsetHeight : 0;
+      const targetPosition = targetSection.offsetTop - navHeight;
+      
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth',
+      });
+    }
+  });
 }
 
 // Syntax highlighting removed - using plain code blocks
