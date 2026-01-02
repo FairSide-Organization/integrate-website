@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCopyButtons();
   initScrollAnimations();
   initScrollIndicator();
+  initConfetti();
 });
 
 /**
@@ -149,6 +150,11 @@ function initCopyButtons() {
         button.style.color = 'var(--accent-primary)';
         button.style.borderColor = 'var(--accent-primary)';
         
+        // Trigger confetti celebration
+        if (typeof confetti !== 'undefined') {
+          triggerCopyConfetti(button);
+        }
+        
         setTimeout(() => {
           button.textContent = originalText;
           button.style.color = '';
@@ -163,6 +169,27 @@ function initCopyButtons() {
         }, 2000);
       }
     });
+  });
+}
+
+/**
+ * Helper function to trigger confetti from copy button
+ */
+function triggerCopyConfetti(button) {
+  const brandColors = ['#8750FF', '#D7D7FF', '#00515C', '#3C95E5', '#3BA035', '#FC5217'];
+  const rect = button.getBoundingClientRect();
+  const x = rect.left + rect.width / 2;
+  const y = rect.top + rect.height / 2;
+  
+  confetti({
+    particleCount: 20,
+    angle: 90,
+    spread: 55,
+    origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+    colors: brandColors,
+    gravity: 1,
+    ticks: 80,
+    decay: 0.92,
   });
 }
 
@@ -256,4 +283,110 @@ function initScrollIndicator() {
 }
 
 // Syntax highlighting removed - using plain code blocks
+
+/**
+ * Confetti Effects - Celebrate key interactions
+ */
+function initConfetti() {
+  // Brand colors for confetti
+  const brandColors = ['#8750FF', '#D7D7FF', '#00515C', '#3C95E5', '#3BA035', '#FC5217'];
+  
+  /**
+   * Hero section - Subtle welcome confetti on page load
+   */
+  function heroConfetti() {
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    
+    // Small burst from top center after a short delay
+    setTimeout(() => {
+      const rect = hero.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + 50;
+      
+      confetti({
+        particleCount: 30,
+        angle: 90,
+        spread: 45,
+        origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+        colors: brandColors,
+        gravity: 0.8,
+        ticks: 100,
+        decay: 0.94,
+      });
+    }, 800);
+  }
+  
+  /**
+   * Copy button - Celebration confetti when code is copied
+   */
+  function copyConfetti(button) {
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    // Small burst from the button
+    confetti({
+      particleCount: 20,
+      angle: 90,
+      spread: 55,
+      origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+      colors: brandColors,
+      gravity: 1,
+      ticks: 80,
+      decay: 0.92,
+    });
+  }
+  
+  /**
+   * Get API Key button - Exciting confetti burst
+   */
+  function ctaConfetti(button) {
+    const rect = button.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    // Multiple bursts for excitement
+    confetti({
+      particleCount: 50,
+      angle: 90,
+      spread: 60,
+      origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+      colors: brandColors,
+      gravity: 0.9,
+      ticks: 120,
+      decay: 0.93,
+    });
+    
+    // Second burst after a short delay
+    setTimeout(() => {
+      confetti({
+        particleCount: 30,
+        angle: 90,
+        spread: 70,
+        origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+        colors: brandColors,
+        gravity: 0.8,
+        ticks: 100,
+        decay: 0.94,
+      });
+    }, 150);
+  }
+  
+  // Copy buttons are handled in initCopyButtons() - confetti triggered there
+  
+  // Attach confetti to Get API Key buttons
+  const ctaButtons = document.querySelectorAll('.sidebar-cta, .btn-primary[href*="api"], .btn-primary[href*="key"]');
+  ctaButtons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+      // Only if it's not a mailto link (let those open normally)
+      if (!button.href.startsWith('mailto:')) {
+        ctaConfetti(button);
+      }
+    });
+  });
+  
+  // Hero confetti on load
+  heroConfetti();
+}
 

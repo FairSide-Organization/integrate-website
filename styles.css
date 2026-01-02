@@ -524,10 +524,7 @@ code {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--primary-electric);
 }
 
 .hero-subtitle {
@@ -1342,7 +1339,7 @@ code {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
-  background: linear-gradient(135deg, var(--primary-600) 0%, var(--secondary-600) 100%);
+  background: var(--primary-electric);
   color: white;
   border-radius: 50%;
   display: flex;
