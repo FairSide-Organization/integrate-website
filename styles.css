@@ -4,63 +4,89 @@
    =================================== */
 
 :root {
-  /* Primary Purple Palette */
-  --primary-100: #F6F3FF;
-  --primary-200: #EDE7FF;
-  --primary-300: #D9CBFF;
-  --primary-400: #C4ACFF;
-  --primary-500: #AB85FF;
-  --primary-600: #8F4DFF;
-  --primary-700: #8045E4;
-  --primary-800: #6F3CC6;
-  --primary-900: #5A31A1;
-  --primary-1000: #402272;
+  /* ===== BRAND COLORS ===== */
   
-  /* Secondary Blue Palette */
-  --secondary-100: #ECF0FE;
-  --secondary-200: #DAE1FD;
-  --secondary-300: #B5C3FB;
-  --secondary-400: #8FA5F9;
-  --secondary-500: #6A87F7;
-  --secondary-600: #4569F5;
-  --secondary-700: #3754C4;
-  --secondary-800: #293F93;
-  --secondary-900: #1C2A62;
-  --secondary-1000: #0E1531;
+  /* Primary Electric Purple */
+  --primary-electric: #8750FF;
+  
+  /* Primary Midnight */
+  --primary-midnight: #110320;
+  
+  /* Primary Lavender */
+  --primary-lavender: #D7D7FF;
+  
+  /* Secondary Colors */
+  --secondary-green: #00515C;
+  --secondary-red: #CC192E;
+  
+  /* Tertiary Colors */
+  --tertiary-orange: #FC5217;
+  --tertiary-green: #3BA035;
+  --tertiary-blue: #3C95E5;
+  --tertiary-pink: #FF4A86;
+  
+  /* Light Grey */
+  --light-grey: #F6F6F6;
+  
+  /* ===== DERIVED PALETTE ===== */
+  
+  /* Primary Purple Palette (derived from Electric Purple #8750FF) */
+  --primary-100: #F3EDFF;
+  --primary-200: #E7DBFF;
+  --primary-300: #D1BEFF;
+  --primary-400: #B898FF;
+  --primary-500: #9E74FF;
+  --primary-600: #8750FF; /* Electric Purple - Main brand color */
+  --primary-700: #6C40CC;
+  --primary-800: #513099;
+  --primary-900: #362066;
+  --primary-1000: #1B1033;
+  
+  /* Secondary Teal Palette (derived from Secondary Green #00515C) */
+  --secondary-100: #E6F2F3;
+  --secondary-200: #CCE5E8;
+  --secondary-300: #99CBD1;
+  --secondary-400: #66B1BA;
+  --secondary-500: #3397A3;
+  --secondary-600: #00515C; /* Secondary Green */
+  --secondary-700: #00414A;
+  --secondary-800: #003137;
+  --secondary-900: #002025;
+  --secondary-1000: #001012;
   
   /* Neutral Gray Palette */
-  --neutral-gray-100: #FAFBFC;
-  --neutral-gray-200: #F6F6F8;
-  --neutral-gray-300: #E8E9EF;
-  --neutral-gray-400: #DADCE5;
-  --neutral-gray-500: #CCCFDB;
-  --neutral-gray-600: #A3A8BD;
-  --neutral-gray-700: #8E95AF;
-  --neutral-gray-800: #484F6C;
-  --neutral-gray-900: #2C2F3E;
-  --neutral-gray-1000: #16181F;
+  --neutral-gray-100: #FAFAFA;
+  --neutral-gray-200: #F6F6F6; /* Light Grey */
+  --neutral-gray-300: #EBEBEB;
+  --neutral-gray-400: #D9D9D9;
+  --neutral-gray-500: #C4C4C4;
+  --neutral-gray-600: #9E9E9E;
+  --neutral-gray-700: #757575;
+  --neutral-gray-800: #424242;
+  --neutral-gray-900: #212121;
+  --neutral-gray-1000: #110320; /* Midnight */
   
   /* Status colors */
-  --success-100: #ECFEF2;
-  --success-600: #45F67B;
-  --success-700: #37C562;
-  --warning-100: #FFF6EE;
-  --warning-600: #FBA959;
-  --error-100: #FFE6E6;
-  --error-400: #FF5E5E;
-  --error-600: #FF0000;
+  --success-100: #E8F5E9;
+  --success-600: #3BA035; /* Tertiary Green */
+  --success-700: #2E7D32;
+  --warning-100: #FFF3E0;
+  --warning-600: #FC5217; /* Tertiary Orange */
+  --error-100: #FFEBEE;
+  --error-400: #FF4A86; /* Tertiary Pink */
+  --error-600: #CC192E; /* Secondary Red */
   
   /* Background */
   --bg-primary: #FFFFFF;
-  --bg-secondary: #FAFBFC;
-  --bg-tertiary: #F6F6F8;
-  --dark: #191c1f;
-  --black-100: #080E18;
+  --bg-secondary: #FAFAFA;
+  --bg-tertiary: #F6F6F6; /* Light Grey */
+  --dark: #110320; /* Midnight */
+  --black-100: #110320; /* Midnight */
   
   /* Shadows */
   --shadow-xs: 0px 0px 20px rgba(0, 0, 0, 0.06);
   --shadow-sm: 0px 0px 20px 0px rgba(163, 168, 189, 0.2);
-  --shadow-button: 0px 0px 0px 3px rgba(176, 160, 255, 0.50);
+  --shadow-button: 0px 0px 0px 3px rgba(135, 80, 255, 0.35);
   
   /* Typography */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -412,7 +438,7 @@ code {
   left: 10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(143, 77, 255, 0.25) 0%, rgba(143, 77, 255, 0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(135, 80, 255, 0.25) 0%, rgba(135, 80, 255, 0.1) 40%, transparent 70%);
   border-radius: 50%;
   filter: blur(60px);
   animation: floatGlowPrimary 15s ease-in-out infinite;
@@ -425,7 +451,7 @@ code {
   right: 5%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(69, 105, 245, 0.25) 0%, rgba(69, 105, 245, 0.1) 40%, transparent 70%);
+  background: radial-gradient(circle, rgba(0, 81, 92, 0.25) 0%, rgba(0, 81, 92, 0.1) 40%, transparent 70%);
   border-radius: 50%;
   filter: blur(60px);
   animation: floatGlowSecondary 18s ease-in-out infinite;
@@ -1561,8 +1587,8 @@ code {
   position: absolute;
   inset: 0;
   background-image: 
-    radial-gradient(circle at 20% 50%, rgba(143, 77, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 50%, rgba(69, 105, 245, 0.1) 0%, transparent 50%);
+    radial-gradient(circle at 20% 50%, rgba(135, 80, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(0, 81, 92, 0.1) 0%, transparent 50%);
   pointer-events: none;
 }
 
