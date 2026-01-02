@@ -16,27 +16,85 @@
   <meta name="theme-color" content="#FFFFFF">
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="nav-container">
-      <a href="#" class="nav-logo">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <a href="#" class="sidebar-logo">
         <img src="logo.svg" alt="Fairside" class="logo-img">
       </a>
-      <div class="nav-links">
-        <a href="#overview" class="nav-link">Overview</a>
-        <a href="#authentication" class="nav-link">Auth</a>
-        <a href="#membership" class="nav-link">Membership</a>
-        <a href="#contracts" class="nav-link">Contracts</a>
-        <a href="#crypto-payments" class="nav-link">Crypto Payments</a>
-        <a href="#referrals" class="nav-link">Referrals</a>
-        <a href="#examples" class="nav-link">Examples</a>
-      </div>
-      <div class="nav-actions">
-        <a href="https://fairside.gitbook.io/fairsidenetwork" class="btn btn-ghost" target="_blank">Full Docs</a>
-        <a href="#get-started" class="btn btn-primary">Get API Key</a>
-      </div>
     </div>
-  </nav>
+    
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <span class="nav-section-title">Getting Started</span>
+        <a href="#overview" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg>
+          Overview
+        </a>
+        <a href="#authentication" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Authentication
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <span class="nav-section-title">Core API</span>
+        <a href="#membership" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Membership
+        </a>
+        <a href="#contracts" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          Smart Contracts
+        </a>
+        <a href="#crypto-payments" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+          Crypto Payments
+        </a>
+      </div>
+      
+      <div class="nav-section">
+        <span class="nav-section-title">More</span>
+        <a href="#referrals" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+          Referrals
+        </a>
+        <a href="#examples" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          Examples
+        </a>
+        <a href="#errors" class="nav-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          Error Handling
+        </a>
+      </div>
+    </nav>
+    
+    <div class="sidebar-footer">
+      <a href="https://fairside.gitbook.io/fairsidenetwork" class="sidebar-link" target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Full Documentation
+      </a>
+      <a href="#get-started" class="btn btn-primary sidebar-cta">Get API Key</a>
+    </div>
+  </aside>
+
+  <!-- Mobile Header -->
+  <header class="mobile-header">
+    <a href="#" class="sidebar-logo">
+      <img src="logo.svg" alt="Fairside" class="logo-img">
+    </a>
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
 
   <!-- Hero Section -->
   <header class="hero">
@@ -1439,6 +1497,8 @@ if (status.hasCoverage && status.isActive) {
       </div>
     </div>
   </section>
+
+  </main><!-- End main-content -->
 
   <!-- Footer -->
   <footer class="footer">

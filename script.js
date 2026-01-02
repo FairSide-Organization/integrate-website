@@ -3,7 +3,7 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
+  initSidebar();
   initTabs();
   initCopyButtons();
   initScrollAnimations();
@@ -11,25 +11,45 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Navigation - Smooth scrolling and active states
+ * Sidebar Navigation - Mobile toggle and active states
  */
-function initNavigation() {
-  const nav = document.querySelector('.nav');
+function initSidebar() {
+  const sidebar = document.querySelector('.sidebar');
+  const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
-  // Handle scroll - add background to nav and update active link
+  // Mobile menu toggle
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+
+    // Close sidebar when clicking a link on mobile
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+
+    // Close sidebar when clicking outside
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 1024 && 
+          sidebar.classList.contains('open') && 
+          !sidebar.contains(e.target) && 
+          !mobileMenuBtn.contains(e.target)) {
+        sidebar.classList.remove('open');
+      }
+    });
+  }
+
+  // Handle scroll - update active link
   let ticking = false;
   
   function updateNavigation() {
     const scrollY = window.scrollY;
-    
-    // Add class to nav when scrolled
-    if (scrollY > 50) {
-      nav.classList.add('scrolled');
-    } else {
-      nav.classList.remove('scrolled');
-    }
 
     // Update active nav link based on scroll position
     sections.forEach((section) => {
@@ -65,8 +85,10 @@ function initNavigation() {
       const targetSection = document.querySelector(targetId);
       
       if (targetSection) {
-        const navHeight = nav.offsetHeight;
-        const targetPosition = targetSection.offsetTop - navHeight;
+        // Account for mobile header on smaller screens
+        const mobileHeader = document.querySelector('.mobile-header');
+        const offset = window.innerWidth <= 1024 && mobileHeader ? mobileHeader.offsetHeight : 20;
+        const targetPosition = targetSection.offsetTop - offset;
         
         window.scrollTo({
           top: targetPosition,
