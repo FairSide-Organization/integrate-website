@@ -1,0 +1,1563 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ActiveMembershipRequired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_CannotChange",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ChainlinkMalfunction",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ChainlinkPriceStale",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_CurveIsClosedUseETH",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ExceedsCSBLimitPerAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ExceedsCostShareBenefitLimitPerAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_ExceedsMaxCostShareBenefitLimit",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_FairPurchaseDisabled",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_IncorrectLossRatioSpecified",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_IncorrectSlippageSpecified",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_IncorrectValueSpecified",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InsufficientApproval",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InsufficientPrivileges",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InsufficientPrivilegesOnlyAdmin",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InsufficientPrivilegesOnlyGuardian",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InvalidCostShareBenefitSpecified",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_InvalidCoverIdForAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_MembershipBlocked",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_MembershipExpired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_MembershipNotExpired",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_MembershipTopupDisabled",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_MembershipTypeDisabled",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_NotEnoughFair",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_OnlyFairSideBountyPoolCanCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_OnlyFairSideClaimsCanCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_OnlyMembershipPurchaseProxyCanCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_OnlyPremiumPoolCanCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FSNetwork_PremiumFeeSentIsLessThanRequired",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "previousAdmin",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "newAdmin",
+        "type": "address"
+      }
+    ],
+    "name": "AdminChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "beacon",
+        "type": "address"
+      }
+    ],
+    "name": "BeaconUpgraded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "member",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "costshareBenefit",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "coverAddress",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum FairSideNetwork.TokenType",
+        "name": "tokenType",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "membershipTypeId",
+        "type": "uint256"
+      }
+    ],
+    "name": "NewMembership",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fundingPremium",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "parntersPremium",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakingRewards",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "curveReserve",
+        "type": "uint256"
+      }
+    ],
+    "name": "PremiumEthDistributed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fundingPremium",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "parntersPremium",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakingRewards",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "curveReserve",
+        "type": "uint256"
+      }
+    ],
+    "name": "PremiumFairDistributed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "premiumRewardContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetETHPremiumReward",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "premiumRewardContract",
+        "type": "address"
+      }
+    ],
+    "name": "SetFairPremiumReward",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "fairPurchaseEnabled",
+        "type": "bool"
+      }
+    ],
+    "name": "SetFairPurchaseEnabled",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fundingPoolAllocation",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "partnersPoolAllocation",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "stakingRewards",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "lossRatio",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetFeeDistributionPercenages",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "lossRatio",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetLossRatio",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "networkGearingFactor",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetNetworkGearingFactor",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "riskBasedCapital",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetRiskBasedCapital",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenGearingFactor",
+        "type": "uint256"
+      }
+    ],
+    "name": "TokenGearingFactorSet",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "member",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "costshareBenefit",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum FairSideNetwork.TokenType",
+        "name": "tokenType",
+        "type": "uint8"
+      }
+    ],
+    "name": "TopUpCover",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "FUNDING_POOL",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "FUNDING_POOL_ALLOCATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "FairSIDE_BOUNTY_POOL",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PARTNERS_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PARTNERS_POOL_ALLOCATION",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PREMIUMS_POOL",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "PREMIUM_REWARD_ADDRESS",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "STAKING_REWARDS",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "TIMELOCK",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADER_ROLE",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "gracePeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "topupDisabledPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "minimumPurchaseAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maximumBenefitPerUser",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cost",
+        "type": "uint256"
+      }
+    ],
+    "name": "addMembershipType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "blocked",
+        "type": "bool"
+      }
+    ],
+    "name": "blockMembership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      }
+    ],
+    "name": "decrementTotalPWPCSB",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      }
+    ],
+    "name": "disableMembershipType",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "expirationDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "membershipTypeId",
+        "type": "uint256"
+      }
+    ],
+    "name": "estimateCost",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fairPurchaseEnabled",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "fairSideClaims",
+    "outputs": [
+      {
+        "internalType": "contract IFairSideClaims",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "tokenContractAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "address payable",
+        "name": "destination",
+        "type": "address"
+      }
+    ],
+    "name": "flushAsset",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "getAccountCoveredWallets",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "getAccountMembership",
+    "outputs": [
+      {
+        "internalType": "uint256[]",
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getCapitalPool",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "membershipTypeId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getCoverCost",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverCost",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getFairPrice",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getMaxTotalCostShareBenefits",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      }
+    ],
+    "name": "getMembership",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "wallet",
+            "type": "address"
+          },
+          {
+            "internalType": "uint80",
+            "name": "creation",
+            "type": "uint80"
+          },
+          {
+            "internalType": "bool",
+            "name": "blocked",
+            "type": "bool"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "uint80",
+            "name": "expirationDate",
+            "type": "uint80"
+          },
+          {
+            "internalType": "uint256",
+            "name": "availableCostShareBenefits",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "paidCostShareBenefits",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "membershipTypeId",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "coverCost",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct IFairSideSchema.Membership",
+        "name": "",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getNetworkFShare",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getTotalOpenRequests",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      }
+    ],
+    "name": "hasPassedGracePeriod",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "increase",
+        "type": "bool"
+      }
+    ],
+    "name": "increaseOrDecreaseCSB",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IFair",
+        "name": "_fair",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "fundingPool",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "premiumsPool",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IFairsideAdmin",
+        "name": "_fairsideAdmin",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "timelock",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "patnersPool",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "premiumReward",
+        "type": "address"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "isOpenCurve",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "lossRatio",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "membershipCount",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "membershipPurchaseProxy",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "membershipTypes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "duration",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "gracePeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "topupDisabledPeriod",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "minimumPurchaseAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "maximumBenefitPerUser",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "cost",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "active",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "networkGearingFactor",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "numMembershipTypes",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "coverAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "membershipType",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseMembership",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "primaryAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "coverAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "membershipType",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseMembershipFromProxy",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "coverAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "membershipType",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseMembershipWithFair",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "primaryAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "costShareBenefit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "coverAddress",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "membershipType",
+        "type": "uint256"
+      }
+    ],
+    "name": "purchaseMembershipWithFairFromProxy",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      }
+    ],
+    "name": "removeExpiredMembershipCSB",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "riskBasedCapital",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bool",
+        "name": "_fairPurchaseEnabled",
+        "type": "bool"
+      }
+    ],
+    "name": "setEnableFairPurchase",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_fairSideBountyPool",
+        "type": "address"
+      }
+    ],
+    "name": "setFairSideBountyPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "contract IFairSideClaims",
+        "name": "_fairSideClaims",
+        "type": "address"
+      }
+    ],
+    "name": "setFairSideClaims",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_fundingPoolAllocation",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_partnersPoolAllocation",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_stakingRewards",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_lossRatio",
+        "type": "uint256"
+      }
+    ],
+    "name": "setFeeDistributionPercentages",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address payable",
+        "name": "_newFundingPool",
+        "type": "address"
+      }
+    ],
+    "name": "setFundingPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_newMembershipPurchaseProxy",
+        "type": "address"
+      }
+    ],
+    "name": "setMembershipPurchaseProxy",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_gearingFactor",
+        "type": "uint256"
+      }
+    ],
+    "name": "setNetworkGearingFactor",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_newPartnersPool",
+        "type": "address"
+      }
+    ],
+    "name": "setPartnersPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_newPremiumRewardAddress",
+        "type": "address"
+      }
+    ],
+    "name": "setPremiumRewardAddress",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_newPremiumsPool",
+        "type": "address"
+      }
+    ],
+    "name": "setPremiumsPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_riskBasedCapital",
+        "type": "uint256"
+      }
+    ],
+    "name": "setRiskBasedCapital",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "costshareBenefit",
+        "type": "uint256"
+      }
+    ],
+    "name": "topupMembership",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "coverId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "costshareBenefit",
+        "type": "uint256"
+      }
+    ],
+    "name": "topupMembershipWithFair",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalCoverCost",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "totalPWPCSB",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      }
+    ],
+    "name": "upgradeTo",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "version",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "pure",
+    "type": "function"
+  }
+]

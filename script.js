@@ -12,6 +12,44 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
+ * Download ABI Function
+ */
+async function downloadABI() {
+  try {
+    const response = await fetch('FairSideNetwork-ABI.json');
+    const abiData = await response.json();
+    
+    // Create blob and download
+    const blob = new Blob([JSON.stringify(abiData, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'FairSideNetwork-ABI.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    // Visual feedback with confetti
+    if (typeof confetti !== 'undefined') {
+      const brandColors = ['#8750FF', '#D7D7FF', '#00515C', '#3C95E5', '#3BA035', '#FC5217'];
+      confetti({
+        particleCount: 30,
+        angle: 90,
+        spread: 50,
+        origin: { x: 0.5, y: 0.5 },
+        colors: brandColors,
+        gravity: 0.9,
+        ticks: 100,
+      });
+    }
+  } catch (error) {
+    console.error('Failed to download ABI:', error);
+    alert('Failed to download ABI. Please try again.');
+  }
+}
+
+/**
  * Sidebar Navigation - Mobile toggle and active states
  */
 function initSidebar() {
