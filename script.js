@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 /**
  * Download ABI Function
  */
-async function downloadABI() {
+async function downloadABI(event) {
   try {
     const response = await fetch('FairSideNetwork-ABI.json');
     const abiData = await response.json();
@@ -30,18 +30,26 @@ async function downloadABI() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
     
-    // Visual feedback with confetti
-    if (typeof confetti !== 'undefined') {
-      const brandColors = ['#8750FF', '#D7D7FF', '#00515C', '#3C95E5', '#3BA035', '#FC5217'];
-      confetti({
-        particleCount: 30,
-        angle: 90,
-        spread: 50,
-        origin: { x: 0.5, y: 0.5 },
-        colors: brandColors,
-        gravity: 0.9,
-        ticks: 100,
-      });
+    // Visual feedback with confetti from the button position
+    if (typeof confetti !== 'undefined' && event && event.target) {
+      const button = event.target.closest('.btn-download-abi');
+      if (button) {
+        const brandColors = ['#8750FF', '#D7D7FF', '#00515C', '#3C95E5', '#3BA035', '#FC5217'];
+        const rect = button.getBoundingClientRect();
+        const x = rect.left + rect.width / 2;
+        const y = rect.top + rect.height / 2;
+        
+        confetti({
+          particleCount: 30,
+          angle: 90,
+          spread: 55,
+          origin: { x: x / window.innerWidth, y: y / window.innerHeight },
+          colors: brandColors,
+          gravity: 1,
+          ticks: 80,
+          decay: 0.92,
+        });
+      }
     }
   } catch (error) {
     console.error('Failed to download ABI:', error);
